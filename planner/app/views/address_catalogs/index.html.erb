@@ -1,0 +1,23 @@
+<h1>Listing address_catalogs</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @address_catalogs.each do |address_catalog| %>
+  <tr>
+    <td><%= address_catalog.name %></td>
+    <td><%= link_to 'Show', address_catalog %></td>
+    <td><%= link_to 'Edit', edit_address_catalog_path(address_catalog) %></td>
+    <td><%= link_to 'Destroy', address_catalog, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Address catalog', new_address_catalog_path %>

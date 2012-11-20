@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  address: MyString
+  address_type_id: 1
+  address_catalog_id: 1
+
+two:
+  address: MyString
+  address_type_id: 1
+  address_catalog_id: 1

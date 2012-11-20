@@ -1,0 +1,42 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Trip ID:</b>
+  <%= @trip.id %>
+</p>
+<p>
+  <b>Kid Name:</b>
+  <%= @trip.kid.name %>
+</p>
+<p>
+  <b>Start Address:</b>
+  <%= @trip.start.name %> |
+  <%= @trip.start.address %>
+  
+</p>
+<p>
+  <b>Destination:</b>
+  <%= @trip.destination.name %> |
+  <%= @trip.destination.address %>
+</p>
+<p>
+  <b>Arrive Time:</b>
+  <%= @trip.arrive_time %>
+</p>
+<p>
+  <b>Extra seats:</b>
+  <%= @trip.extra_seats %>
+</p>
+
+<p>
+  <b>Matched:</b>
+  <%= @trip.matched %>
+</p>
+<p>
+  <b>Status:</b>
+  <%= @trip.trip_state.state %>
+</p>
+
+
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>

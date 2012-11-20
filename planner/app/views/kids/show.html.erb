@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Family Last Name:</b>
+  <%= @kid.family.last_name %>
+</p>
+<p>
+  <b>Name:</b>
+  <%= @kid.name %>
+</p>
+<p>
+  <b>Birthday:</b>
+  <%= @kid.birthday %>
+</p>
+<p>
+  <b>School:</b>
+  <%= @kid.school.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_kid_path(@kid) %> |
+<%= link_to 'Back to Kid List', kids_path %> |
+<%= link_to 'Back to Edit Family', edit_family_path(@kid.family_id) %>
+

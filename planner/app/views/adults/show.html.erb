@@ -1,0 +1,38 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Family:</b>
+  <%= Family.find(@adult.family_id).last_name %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%= @adult.name %>
+</p>
+
+<p>
+  <b>Email:</b>
+  <%= @adult.email %>
+</p>
+
+<p>
+  <b>Drive:</b>
+  <%= @adult.drive %>
+</p>
+
+<p>
+  <b>Driver license:</b>
+  <%= @adult.driver_license %>
+</p>
+
+<p>
+  <b>Seats:</b>
+  <%= @adult.seats %>
+</p>
+
+
+<%= link_to 'Edit', edit_adult_path(@adult) %> |
+<%= link_to 'Back to Adult list', adults_path %> |
+<%= link_to 'Back to Edit Family', edit_family_path(@adult.family_id) %>
+
+

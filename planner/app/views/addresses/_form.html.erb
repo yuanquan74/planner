@@ -1,0 +1,36 @@
+<%= form_for(@address) do |f| %>
+  <% if @address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+      <% @address.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :address_type %>
+    <%= link_to "Add a new address type", new_address_type_path, :target => "_blank" %><br />
+    <%= f.select :address_type_id, AddressType.all.collect {|u| [u.name, u.id]} %>
+  </div>
+
+  <div class="field">
+    <%= f.label :address_catalog_id %>
+    <%= link_to "Add a new address catalog", new_address_catalog_path, :target => "_blank" %><br />
+    <%= f.select :address_catalog_id, AddressCatalog.all.map{|s| [s.name, s.id]} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

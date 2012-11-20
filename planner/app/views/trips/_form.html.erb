@@ -1,0 +1,52 @@
+<%= form_for(@trip) do |f| %>
+  <% if @trip.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@trip.errors.count, "error") %> prohibited this trip from being saved:</h2>
+
+      <ul>
+      <% @trip.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trip_id, "TRIP ID" %><br />
+    <%= f.text_field :id, :readonly=>true %>
+  </div>
+  <div class="field">
+    <%= f.label :kid_name %>
+    <%= link_to "Add a new kid", new_kid_path, :target => "_blank" %><br />
+    <%= select("trip", :kid_id, Kid.all.collect {|s| [s.name, s.id]}) %>
+  </div>
+  <div class="field">
+    <%= f.label :start_address %>
+    <%= link_to "Add a new address", new_address_path, :target => "_blank" %><br />
+    <%= f.select :start_id, Address.all.collect {|s| [s.name, s.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :destination %>
+    <%= link_to "Add a new address", new_address_path, :target => "_blank" %><br />
+    <%= f.select :destination_id, Address.all.collect {|s| [s.name, s.id]} %>
+  </div>
+  <div class="field">
+    <%= f.label :arrive_time %><br />
+    <%= f.datetime_select :arrive_time %>
+  </div>
+  <div class="field">
+    <%= f.label :extra_seats %><br />
+    <%= f.select :extra_seats, 1..5 %>
+  </div>
+  <div class="field">
+    <%= f.label :matched %><br />
+    <%= select("trip", :matched, [['No', 0], ['Yes', 1]]) %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br />
+    <%= select("trip", :trip_state_id, TripState.all.collect {|s| [s.state, s.id]}) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,54 @@
+<%= form_for(@family) do |f| %>
+  <% if @family.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@family.errors.count, "error") %> prohibited this family from being saved:</h2>
+
+      <ul>
+      <% @family.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name%>
+  </div>
+    
+
+  <div class="field">
+    <%= f.label :address %> <br> 
+    <%if @family.address_id.nil? %>
+    <input size=50  type='text' name="address" value=""><br>
+    <%else%>
+    <input size=50  type='text' name="address" id=<%=@family.address_id%> value="<%=Address.find(@family.address_id).address.to_s%>"><br>
+    <%end%>
+  </div>
+
+  
+  <%if !@family.address_id.nil? %>
+    <div class="field">
+      <%= f.label :adults %> <br>
+      <%if !@family.adults.empty? %>
+      	<%@family.adults.each do |a| %>
+          <%= link_to a.name, edit_adult_path(a.id) %> <br />
+      	<%end%>         
+      <%end%> 
+      <%= link_to "Add a new adult", new_adult_path(:family_id=>@family.id, :seats=>3)%> <br />  
+    </div>
+    <div class="field">
+      <%= f.label :kids %> <br>
+      <%if !@family.kids.empty? %>
+      	<%@family.kids.each do |a| %>
+          <%= link_to a.name, edit_kid_path(a.id) %> <br />
+      	<%end%>         
+      <%end%> 
+      <%= link_to "Add a new kid", new_kid_path(:family_id=>@family.id)%> <br />  
+    </div>
+  <%end%>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

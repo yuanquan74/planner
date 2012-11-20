@@ -1,0 +1,40 @@
+<h1>Listing trips</h1>
+
+<table>
+  <tr>
+    <th>Trip ID</th>
+    <th>Kid Name</th>
+    <th>State Address</th>
+    <th>Destination</th>
+    <th>Arrive Time</th>
+    <th>Extra Seats</th>
+    <th>Matched</th>
+    <th>Status</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @trips.each do |trip| %>
+  <tr>
+    <td><%= trip.id %></td>
+    <td><%= trip.kid.name %></td>
+    <td><%= trip.start.name %></td>
+    <td><%= trip.destination.name %></td>
+    <td><%= trip.arrive_time %></td>
+    <td><%= trip.extra_seats %></td>
+    <td><%= trip.matched %></td>
+    <td><%= trip.trip_state.state %></td>
+    <td><%= link_to 'Show', trip %></td>
+    <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
+    <td><%= link_to 'Destroy', trip, :method => :delete, :data => { :confirm => 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Trip', new_trip_path %>
+<%= link_to 'Kids', kids_path %>
+<%= link_to 'Addresses', addresses_path %>
+

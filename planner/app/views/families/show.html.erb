@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Last Name:</b>
+  <%= @family.last_name %>
+</p>
+<p>
+  <b>Address:</b>
+  <%= @family.address.address %>
+</p>
+<p>
+  <b>Adults:</b>
+  <%@family.adults.each do |adult| %>
+  <div>
+    <dd><b>Name: </b>
+    <%=adult.name %><br />
+    <b>Can be a Driver? </b>
+    <%=adult.drive%><br />
+    <b>Driver License:</b>
+    <%=adult.driver_license%> <br />
+    <b>Avaliable seats: </b>
+    <%=adult.seats%><br />
+    <b>Email: </b>
+    <%=adult.email%><br />
+  </div> <br />
+  <%end%>
+</p>
+<p>
+  <b>Kids:</b>
+  <%@family.kids.each do |kid| %>
+  <div><dd>
+    <b>Name: </b>
+    <%=kid.name %><br />
+    <b>Birthday </b>
+    <%=kid.birthday.to_s%><br />
+    <b>school</b>
+    <%=kid.school.name + '|' + kid.school.address%> <br />
+  </div> <br />
+  <%end%>
+</p>
+
+
+<%= link_to 'Edit', edit_family_path(@family) %> |
+<%= link_to 'Back', families_path %>

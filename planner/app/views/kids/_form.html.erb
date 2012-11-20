@@ -1,0 +1,39 @@
+<%= form_for(@kid) do |f| %>
+  <% if @kid.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@kid.errors.count, "error") %> prohibited this kid from being saved:</h2>
+
+      <ul>
+      <% @kid.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :family %><br /> 
+    <%if @kid.id.nil? %>
+    <%= f.select :family_id, Family.all.collect {|u| [u.last_name, u.id]}  %>
+    <%else%>
+    <%= @kid.family.last_name %>
+    <%end%>
+  </div>
+  <div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :birthday %><br />
+    <%= f.date_select :birthday, :start_year =>Time.now.year-20, :end_year=>Time.now.year%>
+  </div>
+  <div class="field">
+    <%= f.label :school %><br />
+    <% addr_type_id = AddressType.find(:first, :conditions=>{:name => 'school'})  %>
+    <%= link_to "Add a new school", new_address_path(:address_type_id=>addr_type_id), :target => "_blank"%><br />
+    <%= f.select :school_id, Address.find(:all, :conditions=>{:address_type_id=>addr_type_id}).collect {|u| [u.name, u.id]} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
